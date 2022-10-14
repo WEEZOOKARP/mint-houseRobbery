@@ -240,39 +240,46 @@ function EntryMinigame(missionTarget)
 
     local maxwidth = 30
     local maxduration = 3500
-
-    Skillbar.Start({
-        duration = math.random(2000, 3000),
-        pos = math.random(10, 30),
-        width = math.random(20, 30),
-    }, function()
-        if SucceededAttempts + 1 >= NeededAttempts then
-            TriggerEvent("goInside", missionTarget)
-            ongoing = true
-            QBCore.Functions.Notify("You got the door open!", "success")
-            FailedAttemps = 0
-            SucceededAttempts = 0
-            NeededAttempts = 0
-        else
-            SucceededAttempts = SucceededAttempts + 1
-            Skillbar.Repeat({
-                duration = math.random(2000, 3000),
-                pos = math.random(10, 30),
-                width = math.random(20, 30),
-            })
+    local hasitem = QBCore.Functions.HasItem(Config.ItemRequired)
+    if hasitem then
+        if Config.Shoulduseitem then
+            TriggerServerEvent("robbery:removerequireditem")
         end
-	end, function()
-            QBCore.Functions.Notify("You messed up the lock! Get outa there!", "error")
-            callPolice(missionTarget)
-            FailedAttemps = 0
-            SucceededAttempts = 0
-            NeededAttempts = 0
-            robberyStarted = false
-            ongoing = false
-            cooldownNextRobberyFail()
-            Citizen.Wait(500)
-            TriggerEvent('cd_drawtextui:HideUI')
-    end)
+	    Skillbar.Start({
+		duration = math.random(2000, 3000),
+		pos = math.random(10, 30),
+		width = math.random(20, 30),
+	    }, function()
+		if SucceededAttempts + 1 >= NeededAttempts then
+		    TriggerEvent("goInside", missionTarget)
+		    ongoing = true
+		    QBCore.Functions.Notify("You got the door open!", "success")
+		    FailedAttemps = 0
+		    SucceededAttempts = 0
+		    NeededAttempts = 0
+		else
+		    SucceededAttempts = SucceededAttempts + 1
+		    Skillbar.Repeat({
+			duration = math.random(2000, 3000),
+			pos = math.random(10, 30),
+			width = math.random(20, 30),
+		    })
+		end
+		end, function()
+		    QBCore.Functions.Notify("You messed up the lock! Get outa there!", "error")
+		    callPolice(missionTarget)
+		    FailedAttemps = 0
+		    SucceededAttempts = 0
+		    NeededAttempts = 0
+		    robberyStarted = false
+		    ongoing = false
+		    cooldownNextRobberyFail()
+		    Citizen.Wait(500)
+		    TriggerEvent('cd_drawtextui:HideUI')
+	    end)
+	else
+		QBCore.Functions.Notify('You are missing something, but what could it be?', 'error', 7500)
+	end
 end
 
 function callPolice(missionTarget)
