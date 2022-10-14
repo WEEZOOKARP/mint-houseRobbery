@@ -19,9 +19,8 @@ end)
 
 function addNormal(src)
     --TriggerClientEvent('mythic_notify:client:SendAlert', src, { type = 'inform', text = 'Normal', })
-    local item = Config.Items.normalItems[math.random(#Config.Items.normalItems)]
+    local item = Config.Items.normalItems[math.random(1,#Config.Items.normalItems)]
     TriggerClientEvent('QBCore:Notify', src, 'You Found ' .. QBCore.Shared.Items[item].label .. '!', 'success', 5000)
-    print(item)
     local Player = QBCore.Functions.GetPlayer(src)
     Player.Functions.AddItem(item, 1)
     TriggerClientEvent('inventory:client:ItemBox', source, QBCore.Shared.Items[item], "add")
@@ -29,18 +28,17 @@ end
 
 function addRare(src)
     --TriggerClientEvent('mythic_notify:client:SendAlert', src, { type = 'inform', text = 'Rare', })
-    local item = Config.Items.rareItems[math.random(#Config.Items.rareItems)]
+    local item = Config.Items.rareItems[math.random(1,#Config.Items.rareItems)]
     TriggerClientEvent('QBCore:Notify', src, 'You Found ' .. QBCore.Shared.Items[item].label .. '!', 'success', 5000)
-    print(item)
     local Player = QBCore.Functions.GetPlayer(src)
     Player.Functions.AddItem(item, 1)
     TriggerClientEvent('inventory:client:ItemBox', source, QBCore.Shared.Items[item], "add")
 end
 
 function addVeryRare(src)
-    TriggerClientEvent('mythic_notify:client:SendAlert', src, { type = 'inform', text = 'Very Rare', })
-    local item = Config.Items.veryRareItems[math.random(#Config.Items.veryRareItems)]
-    print(item)
+    --TriggerClientEvent('mythic_notify:client:SendAlert', src, { type = 'inform', text = 'Very Rare', })
+    local item = Config.Items.veryRareItems[math.random(1,#Config.Items.veryRareItems)]
+    TriggerClientEvent('QBCore:Notify', src, 'You Found ' .. QBCore.Shared.Items[item].label .. '!', 'success', 5000)
     local Player = QBCore.Functions.GetPlayer(src)
     Player.Functions.AddItem(item, 1)
     TriggerClientEvent('inventory:client:ItemBox', source, QBCore.Shared.Items[item], "add")
