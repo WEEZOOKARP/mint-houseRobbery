@@ -1,3 +1,5 @@
+local QBCore = exports['qb-core']:GetCoreObject()
+
 canStart = true
 ongoing = false
 robberyStarted = false
@@ -286,7 +288,6 @@ function EntryMinigame(missionTarget)
         pos = math.random(10, 30),
         width = math.random(20, 30),
     }, function()
-
         if SucceededAttempts + 1 >= NeededAttempts then
             TriggerEvent("goInside", missionTarget)
             ongoing = true
@@ -302,10 +303,7 @@ function EntryMinigame(missionTarget)
                 width = math.random(20, 30),
             })
         end
-
-
 	end, function()
-
             QBCore.Functions.Notify("You messed up the lock! Get outa there!", "error")
             callPolice(missionTarget)
             FailedAttemps = 0
@@ -316,13 +314,10 @@ function EntryMinigame(missionTarget)
             cooldownNextRobberyFail()
             Citizen.Wait(500)
             TriggerEvent('cd_drawtextui:HideUI')
-
     end)
 end
 
 function callPolice(missionTarget)
-    local data = {displayCode = '459', description = 'House alarm', isImportant = 0, recipientList = {'police'}, length = '10000', infoM = 'fa-info-circle', info = 'House alarm activated'}
-	local dispatchData = {dispatchData = data, caller = 'Alarm', coords = vector3(missionTarget.location.x, missionTarget.location.y, missionTarget.location.z)}
-	TriggerServerEvent('wf-alerts:svNotify', dispatchData)
-    PlaySound(-1, "Lose_1st", "GTAO_FM_Events_Soundset", 0, 0, 1)
+	exports['ps-dispatch']:HouseRobbery()
+	PlaySound(-1, "Lose_1st", "GTAO_FM_Events_Soundset", 0, 0, 1)
 end
