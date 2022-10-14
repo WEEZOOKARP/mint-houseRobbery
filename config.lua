@@ -2,6 +2,9 @@ Config = {}
 
 Config.Dispatch = "ps-dispatch" -- available options | ps-dispatch | QBCore | anything else and it wont send a dispatch message
 
+Config.ItemRequired = "advancedlockpick" -- the item ID that you want the player to have in order to enter
+Config.Shoulduseitem = true -- weather or not to remove the item from their inventory after use
+
 Config.Locations = {
     {
         name = "Wild Oats Drive",
