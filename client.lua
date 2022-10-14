@@ -6,21 +6,8 @@ robberyStarted = false
 NeededAttempts = 0
 SucceededAttempts = 0
 FailedAttemps = 0
-
-Citizen.CreateThread(function()
-    hashKey = RequestModel(GetHashKey("a_m_y_business_03"))
-
-
-    while not HasModelLoaded(GetHashKey("a_m_y_business_03")) do
-        Wait(1)
-    end
-
-    local npc = CreatePed(4, 0xA1435105, 446.77, -1551.83, 28.28, 177.75, false, true)
-
-    SetEntityHeading(npc, 177.75)
-    FreezeEntityPosition(npc, true)
-    SetEntityInvincible(npc, true)
-    SetBlockingOfNonTemporaryEvents(npc, true)
+AddEventHandler('QBCore:Client:OnPlayerLoaded', function()
+    createentryzones()
 end)
 
 function createentryzones()
@@ -35,7 +22,7 @@ function createentryzones()
 		options = {
 		    {
 			type = "client",
-			event = "startRobbery",
+			event = "getRandomHouseLoc",
 			icon = "far fa-clipboard",
 			label = "Enter",
 		    },
@@ -45,37 +32,17 @@ function createentryzones()
 	end
 end
 
-RegisterNetEvent("startRobbery")
-AddEventHandler("startRobbery", function()
-    if canStart then
-        canStart = false
-        ongoing = true
-        QBCore.Functions.Notify("Starting!", "success")
-        local missionWait = math.random( 1000,  1001)
-        Citizen.Wait(missionWait)
-        SetTimeout(2000, function()
-            TriggerServerEvent('qb-phone:server:sendNewMail', {
-                sender =  "Mr. Mint",
-                subject = "House location",
-                message = "This one should be empty. Get all that juice out of there!",
-                button = {
-                    enabled = true,
-                    buttonEvent = "getRandomHouseLoc"
-                }
-            })
-        end)
-    elseif ongoing then
-        QBCore.Functions.Notify("Your robbery is still in progress.", "error")
-    else
-        QBCore.Functions.Notify("You cant start another robbery right now.", "error")
-    end
-end)
-
 RegisterNetEvent("getRandomHouseLoc")
 AddEventHandler("getRandomHouseLoc", function()
-    local missionTarget = Config.Locations[math.random(#Config.Locations)]
-    TriggerEvent("createBlipAndRoute", missionTarget)
-    TriggerEvent("createEntry", missionTarget)
+    local missionTarget
+    for k, v in ipairs(Config.Locations) do
+        local coords = GetEntityCoords(PlayerPedId())
+        local distance = #(v.location - coords)
+        if distance < 4 then
+            missionTarget = v
+        end
+    end
+    EntryMinigame(missionTarget)
 end)
 
 RegisterNetEvent("createBlipAndRoute")
@@ -248,15 +215,6 @@ end
 function cooldownNextRobbery()
     RemoveBlip(targetBlip)
     TriggerEvent('cd_drawtextui:HideUI')
-    Citizen.Wait(3000)
-    TriggerServerEvent('qb-phone:server:sendNewMail', {
-        sender =  "Mr. Mint",
-        subject = "Good.",
-        message = "Hope you got some good shit from that house. Comeback later and I might have another location for ya.",
-        button = {
-            enabled = false
-        }
-    })
     Citizen.Wait(600000) -- Needs a better option. So that client cant just reconnect and reset timer that way.
     canStart = true
     robberyCreated = false
@@ -266,15 +224,6 @@ end
 function cooldownNextRobberyFail()
     RemoveBlip(targetBlip)
     TriggerEvent('cd_drawtextui:HideUI')
-    Citizen.Wait(3000)
-    TriggerServerEvent('qb-phone:server:sendNewMail', {
-        sender =  "Mr. Mint",
-        subject = "Bad.",
-        message = "That was not good my friend. How about you take some extra time off.",
-        button = {
-            enabled = false
-        }
-    })
     Citizen.Wait(700000) -- Needs a better option. So that client cant just reconnect and reset timer that way.
     canStart = true
     robberyCreated = false
