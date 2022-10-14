@@ -1,10 +1,10 @@
 # mint-houseRobbery
 Requirements:
 
-    qb-core
-    qb-target
-    cl_drawtextui
-    ps-dispatch
+    qb-core -- https://github.com/qbcore-framework/qb-core
+    qb-target -- https://github.com/qbcore-framework/qb-target
+    cd_drawtextui -- https://github.com/dsheedes/cd_drawtextui
+    ps-dispatch -- https://github.com/Project-Sloth/ps-dispatch
 
 Description:
 Simple house robbery script. Its my first resource so feedback and feature ideas are very much appreciated.
