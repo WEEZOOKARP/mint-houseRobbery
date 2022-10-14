@@ -17,6 +17,13 @@ AddEventHandler("robbery:loot", function()
     end
 end)
 
+RegisterNetEvent('robbery:removerequireditem', function(data)
+    local source = src
+    local Player = QBCore.Functions.GetPlayer(source)
+    if not Player then return end
+    Player.Functions.RemoveItem(Config.ItemRequired, 1)
+end)
+
 function addNormal(src)
     --TriggerClientEvent('mythic_notify:client:SendAlert', src, { type = 'inform', text = 'Normal', })
     local item = Config.Items.normalItems[math.random(1,#Config.Items.normalItems)]
