@@ -276,6 +276,10 @@ function EntryMinigame(missionTarget)
 end
 
 function callPolice(missionTarget)
-	exports['ps-dispatch']:HouseRobbery()
+    if Config.Dispatch == "ps-dispatch" then
+	    exports['ps-dispatch']:HouseRobbery()
+    elseif Config.Dispatch == "QBCore" then
+        TriggerServerEvent('police:server:policeAlert', 'Attempted House Robbery')
+    else end
 	PlaySound(-1, "Lose_1st", "GTAO_FM_Events_Soundset", 0, 0, 1)
 end
