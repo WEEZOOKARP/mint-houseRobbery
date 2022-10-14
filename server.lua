@@ -1,3 +1,5 @@
+local QBCore = exports['qb-core']:GetCoreObject()
+
 RegisterNetEvent("robbery:loot")
 AddEventHandler("robbery:loot", function()
     local src = source
@@ -16,8 +18,9 @@ AddEventHandler("robbery:loot", function()
 end)
 
 function addNormal(src)
-    TriggerClientEvent('mythic_notify:client:SendAlert', src, { type = 'inform', text = 'Normal', })
+    --TriggerClientEvent('mythic_notify:client:SendAlert', src, { type = 'inform', text = 'Normal', })
     local item = Config.Items.normalItems[math.random(#Config.Items.normalItems)]
+    TriggerClientEvent('QBCore:Notify', src, 'You Found ' .. QBCore.Shared.Items[item].label .. '!', 'success', 5000)
     print(item)
     local Player = QBCore.Functions.GetPlayer(src)
     Player.Functions.AddItem(item, 1)
@@ -25,8 +28,9 @@ function addNormal(src)
 end
 
 function addRare(src)
-    TriggerClientEvent('mythic_notify:client:SendAlert', src, { type = 'inform', text = 'Rare', })
+    --TriggerClientEvent('mythic_notify:client:SendAlert', src, { type = 'inform', text = 'Rare', })
     local item = Config.Items.rareItems[math.random(#Config.Items.rareItems)]
+    TriggerClientEvent('QBCore:Notify', src, 'You Found ' .. QBCore.Shared.Items[item].label .. '!', 'success', 5000)
     print(item)
     local Player = QBCore.Functions.GetPlayer(src)
     Player.Functions.AddItem(item, 1)
