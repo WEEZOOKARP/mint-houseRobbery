@@ -40,7 +40,7 @@ function createentryzones()
 			label = "Enter",
 		    },
 		},
-		distance = Config.maxdistance
+		distance = 2
 	    })
 	end
 end
