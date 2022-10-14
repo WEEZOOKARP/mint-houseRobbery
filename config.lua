@@ -1,5 +1,7 @@
 Config = {}
 
+Config.Dispatch = "ps-dispatch" -- available options | ps-dispatch | QBCore | anything else and it wont send a dispatch message
+
 Config.Locations = {
     {
         name = "Wild Oats Drive",
