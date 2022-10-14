@@ -23,18 +23,27 @@ Citizen.CreateThread(function()
     SetBlockingOfNonTemporaryEvents(npc, true)
 end)
 
-Citizen.CreateThread(function()
-exports['qb-target']:AddTargetModel(hashKey, {
-	options = {
-		{
+function createentryzones()
+	for k, v in pairs(Config.Locations) do
+	exports['qb-target']:AddBoxZone("enterhouserobbery", v.location, 0.45, 0.35, {
+		name = "enterhouserobbery",
+		heading = 0,
+		debugPoly = false,
+		minZ = 0.0,
+		maxZ = 300.0,
+	    }, {
+		options = {
+		    {
+			type = "client",
 			event = "startRobbery",
 			icon = "far fa-clipboard",
-			label = "Ask for a location"
-		}
-	},
-	distance = 2.5,
-})
-end)
+			label = "Enter",
+		    },
+		},
+		distance = Config.maxdistance
+	    })
+	end
+end
 
 RegisterNetEvent("startRobbery")
 AddEventHandler("startRobbery", function()
