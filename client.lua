@@ -239,7 +239,7 @@ function EntryMinigame(missionTarget)
     local maxwidth = 30
     local maxduration = 3500
     local hasitem = QBCore.Functions.HasItem(Config.ItemRequired)
-    if hasitem then
+    if hasitem and missionTarget.canrob then
         if Config.Shoulduseitem then
             TriggerServerEvent("robbery:removerequireditem")
         end
