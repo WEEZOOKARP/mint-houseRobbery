@@ -65,6 +65,6 @@ body:
     id: renamed
     attributes:
       label: Resource Rename
-      description: Have you renamed this resource from `qb-` to something custom?
+      description: Have you renamed this resource?
     validations:
       required: true
