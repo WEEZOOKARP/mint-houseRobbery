@@ -120,10 +120,9 @@ AddEventHandler("createExit", function(missionTarget)
 
 	            if IsControlJustReleased(0, 23) then
                     Citizen.Wait(1000)
-	                robberyStarted = false
                     ongoing = false
                     SetEntityCoords(PlayerPedId(), missionTarget.location.x, missionTarget.location.y, missionTarget.location.z)
-                    cooldownNextRobbery()
+                    cooldownNextRobbery(missionTarget)
                     Citizen.Wait(500)
                     TriggerEvent('cd_drawtextui:HideUI')
 	            end
@@ -212,24 +211,23 @@ function beginLoot()
     end)
 end
 
-function cooldownNextRobbery()
+function cooldownNextRobbery(missionTarget)
     RemoveBlip(targetBlip)
     TriggerEvent('cd_drawtextui:HideUI')
-    Citizen.Wait(600000) -- Needs a better option. So that client cant just reconnect and reset timer that way.
-    canStart = true
-    robberyCreated = false
+    missionTarget.canrob = false
+    Citizen.Wait(Config.Robsuccesscooldown * 1000 * 60) 
     ongoing = false
+    missionTarget.canrob = true
 end
 
-function cooldownNextRobberyFail()
+function cooldownNextRobberyFail(missionTarget)
     RemoveBlip(targetBlip)
     TriggerEvent('cd_drawtextui:HideUI')
-    Citizen.Wait(700000) -- Needs a better option. So that client cant just reconnect and reset timer that way.
-    canStart = true
-    robberyCreated = false
+    missionTarget.canrob = false
     ongoing = false
+    Citizen.Wait(Config.Robfailedcooldown * 1000 * 60)
+    missionTarget.canrob = true
 end
-
 
 function EntryMinigame(missionTarget)
     local Skillbar = exports['qb-skillbar']:GetSkillbarObject()
@@ -266,16 +264,19 @@ function EntryMinigame(missionTarget)
 		    })
 		end
 		end, function()
-		    QBCore.Functions.Notify("You messed up the lock! Get outa there!", "error")
-		    callPolice(missionTarget)
-		    FailedAttemps = 0
-		    SucceededAttempts = 0
-		    NeededAttempts = 0
-		    robberyStarted = false
-		    ongoing = false
-		    cooldownNextRobberyFail()
-		    Citizen.Wait(500)
-		    TriggerEvent('cd_drawtextui:HideUI')
+		QBCore.Functions.Notify("You messed up the lock! Get outa there!", "error")
+                TriggerServerEvent("InteractSound_SV:PlayWithinDistance", 200, 'metaldetected', 0.4)
+                if not Config.Dispatch == "" then
+                    callPolice(missionTarget)
+                end
+                FailedAttemps = 0
+                SucceededAttempts = 0
+                NeededAttempts = 0
+                robberyStarted = false
+                ongoing = false
+                cooldownNextRobberyFail(missionTarget)
+                Citizen.Wait(500)
+                TriggerEvent('cd_drawtextui:HideUI')
 	    end)
 	else
 		QBCore.Functions.Notify('You are missing something, but what could it be?', 'error', 7500)
