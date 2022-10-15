@@ -7,7 +7,8 @@ Requirements:
     ps-dispatch -- https://github.com/Project-Sloth/ps-dispatch
 
 Description:
-Simple house robbery script. Its my first resource so feedback and feature ideas are very much appreciated.
+Clean and simple house robbery script, originally released by MintKind then converted updated and fixedd up by WEEZOOKA.
+Built for QBCore and can be configured to being used anywhere including all gta online interiors that you can obtain coordinates due to its use of coordinates instead of QB-interiors. Enjoy and if you encounter any issues or want to make a suggestion create an issue.
 
 To-Do:
 
