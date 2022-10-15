@@ -4,11 +4,13 @@ Config.Dispatch = "ps-dispatch" -- available options | ps-dispatch | QBCore | an
 
 Config.ItemRequired = "advancedlockpick" -- the item ID that you want the player to have in order to enter
 Config.Shoulduseitem = true -- weather or not to remove the item from their inventory after use
+Config.Robsuccesscooldown = 10 -- minutes
+Config.Robfailedcooldown = 10 -- minutes
 
 Config.Locations = {
     {
         name = "Wild Oats Drive",
-        isrobbed = false, -- do not change this (has no function yet, timer feature coming soon probably in the next 12 hours or so)
+        canrob = true, -- do not change this (has no function yet, timer feature coming soon probably in the next 12 hours or so)
         location = vector3(-174.07, 502.62, 137.42),
         inside = vector3(-173.72, 495.69, 137.57),
         exit = vector3(-174.34, 497.89, 137.67),
