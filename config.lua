@@ -24,7 +24,7 @@ Config.Locations = {
     },
     --[[{
         name = "Integrity Way",
-        canrob = true, -- do not change this (has no function yet, timer feature coming soon probably in the next 12 hours or so)
+        canrob = true, -- do not change this
         location = vector3(-48.29, -587.09, 37.95),
         insde = vector3(0,0,0),
         exit = vector3(0,0,0),
