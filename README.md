@@ -13,6 +13,6 @@ To-Do:
 
     Done - Some type of puzzle/minigame when entering
     Done - Police alert (Either failed skillcheck on alarm system or on movement speed)
-    Item requierment to start (So it has a risk of some sort if you are not succsessfull)
+    Done - Item requierment to start (So it has a risk of some sort if you are not succsessfull)
     Code cleanup
 
