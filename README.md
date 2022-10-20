@@ -4,7 +4,7 @@ Requirements:
     qb-core -- https://github.com/qbcore-framework/qb-core
     qb-target -- https://github.com/qbcore-framework/qb-target
     cd_drawtextui -- https://github.com/dsheedes/cd_drawtextui
-    ps-dispatch -- https://github.com/Project-Sloth/ps-dispatch
+    ps-dispatch -- https://github.com/Project-Sloth/ps-dispatch -- ONLY IF YOU SET Config.Dispatch to ps-dispatch
 
 # Description:
 Clean and simple house robbery script, originally released by MintKind then converted updated and fixedd up by WEEZOOKA.
