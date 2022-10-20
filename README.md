@@ -21,6 +21,7 @@ Built for QBCore and can be configured to being used anywhere including all gta 
     Config.Robfailedcooldown = 10 -- minutes
 ```
 ## Custom Locations
+I suggest this page for getting gta online interior's coordinates https://wiki.rage.mp/index.php?title=Interiors_and_Locations it is for ragemp but will work fine with fivem as these coordinates are just base gta stuff
 ```
     { -- if you want to add your own robbery copy this table entry ( from the start of this line till the en of line 38 ) paste and edit
         name = "Tinsel Towers", -- Name identifier
