@@ -21,21 +21,21 @@ Config.Locations = {
             vector3(-167.31, 487.45, 133.84),
             vector3(-174.65, 492.51 ,130.04),
         }
-    },
-    --[[{
-        name = "Integrity Way",
+    }, 
+    { -- if you want to add your own robbery copy this table entry ( from the start of this line till the en of line 38 ) paste and edit
+        name = "Tinsel Towers", -- Name identifier
         canrob = true, -- do not change this
-        location = vector3(-48.29, -587.09, 37.95),
-        insde = vector3(0,0,0),
-        exit = vector3(0,0,0),
+        location = vector3(-614.64, 46.96, 43.70), -- Target location
+        inside = vector3(-596.34, 59.45, 108.03), -- Where the player gets placed on entry
+        exit = vector3(-596.38, 56.47, 108.03), -- Where the exit prompt is when inside the robbery
+        outside = vector3(-615.12, 42.58, 43.59), -- where the player is placed on exit
         loot = {
-            vector3(0,0,0),
-            vector3(0,0,0),
-            vector3(0,0,0),
-            vector3(0,0,0),
+            vector3(-605.21, 55.93, 108.04), -- loot location
+            vector3(-610.6, 52.52, 106.62), -- loot location
+            vector3(-617.01, 56.08, 101.83), -- loot location
+            vector3(-609.27, 58.22, 101.82), -- loot location
         }
-    },]]
-
+    },
 }
 
 Config.Items = {
