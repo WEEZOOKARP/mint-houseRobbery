@@ -66,8 +66,8 @@ Config.Items = {
 # To-Do:
 
     Done - Some type of puzzle/minigame when entering
-    Done - Police alert (Either failed skillcheck on alarm system or on movement speed)
-    Done - Item requierment to start (So it has a risk of some sort if you are not succsessfull)
+    Done - Police Alerts
+    Done - Item requierment to start
     Code cleanup
     Any suggestions? go to issues and post there :)
 
