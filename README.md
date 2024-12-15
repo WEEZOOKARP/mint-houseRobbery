@@ -7,8 +7,9 @@ Requirements:
     ps-dispatch -- https://github.com/Project-Sloth/ps-dispatch -- ONLY IF YOU SET Config.Dispatch to ps-dispatch
 
 # Description:
-Clean and simple house robbery script, originally released by MintKind then converted updated and fixedd up by WEEZOOKA.
-Built for QBCore and can be configured to being used anywhere including all gta online interiors that you can obtain coordinates due to its use of coordinates instead of QB-interiors. Enjoy and if you encounter any issues or want to make a suggestion create an issue.
+Clean and simple house robbery script, originally released by MintKind then converted updated and fixed up by WEEZOOKA.
+Built for QBCore and can be configured to being used anywhere using coordinates to allow you to use ipls mlos and more. 
+Enjoy and if you encounter any issues or want to make a suggestion create an issue.
 
 # Config
 ## Dispatch and general config
@@ -68,6 +69,8 @@ Config.Items = {
     Done - Some type of puzzle/minigame when entering
     Done - Police Alerts
     Done - Item requierment to start
-    Code cleanup
+    In progress - Code cleanup
+    Update to reduce number of requirements
+    Further optimisation
     Any suggestions? go to issues and post there :)
 
