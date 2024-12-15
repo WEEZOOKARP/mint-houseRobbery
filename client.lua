@@ -1,16 +1,16 @@
 local QBCore = exports['qb-core']:GetCoreObject()
 
-canStart = true
-ongoing = false
-robberyStarted = false
-NeededAttempts = 0
-SucceededAttempts = 0
-FailedAttemps = 0
+local canStart = true
+local ongoing = false
+local robberyStarted = false
+local NeededAttempts = 0
+local SucceededAttempts = 0
+local FailedAttemps = 0
 AddEventHandler('QBCore:Client:OnPlayerLoaded', function()
     createentryzones()
 end)
 
-function createentryzones()
+local function createentryzones()
 	for k, v in pairs(Config.Locations) do
 	exports['qb-target']:AddBoxZone("enterhouserobbery", v.location, 0.45, 0.35, {
 		name = "enterhouserobbery",
@@ -289,10 +289,10 @@ function EntryMinigame(missionTarget)
 end
 
 function callPolice(missionTarget)
-    if Config.Dispatch == "ps-dispatch" then
-	    exports['ps-dispatch']:HouseRobbery()
-    elseif Config.Dispatch == "QBCore" then
-        TriggerServerEvent('police:server:policeAlert', 'Attempted House Robbery')
-    else end
+    	if Config.Dispatch == "ps-dispatch" then
+		exports['ps-dispatch']:HouseRobbery()
+    	elseif Config.Dispatch == "QBCore" then
+        	TriggerServerEvent('police:server:policeAlert', 'Attempted House Robbery')
+	end
 	PlaySound(-1, "Lose_1st", "GTAO_FM_Events_Soundset", 0, 0, 1)
 end
